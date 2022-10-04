@@ -20,7 +20,7 @@
   },
   "devDependencies": {
     "@playwright/test": "^1.26.1",
-    "@sveltejs/adapter-auto": "next",
+    "@sveltejs/adapter-static": "next",
     "@sveltejs/kit": "next",
     "@typescript-eslint/eslint-plugin": "^5.39.0",
     "@typescript-eslint/parser": "^5.39.0",
