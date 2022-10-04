@@ -1,6 +1,8 @@
 @import '$lib/components/variables';
 
-body, input, select {
+body,
+input,
+select {
   font-size: 1em;
   font-family: Roboto, 'sans-serif';
   color: $text-color;
@@ -13,7 +15,8 @@ body {
   line-height: 1.25;
 }
 
-input, select {
+input,
+select {
   margin: 0;
   padding: 0.25em 0.5em;
   line-height: 1.5;
