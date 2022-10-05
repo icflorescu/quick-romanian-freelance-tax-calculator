@@ -26,8 +26,8 @@
 
   let exchangeRates: Record<string, number>;
   $: disabled = !exchangeRates;
-  let income = 1_000;
-  let currency = 'EUR';
+  let income: number = 2000;
+  let currency: string = 'EUR';
   let interval: 'hour' | 'month' | 'year' = 'month';
   let workedHours: number = 40;
   let workedHoursInterval: 'week' | 'month' = 'week';
@@ -56,7 +56,13 @@
     const values = localStorage.getItem('values');
     if (values) {
       try {
-        ({ income, currency, interval, workedHours, workedHoursInterval } = JSON.parse(values));
+        ({
+          income = 2000,
+          currency = 'EUR',
+          interval = 'month',
+          workedHours = 40,
+          workedHoursInterval = 'week',
+        } = JSON.parse(values));
       } catch {
         console.error('Error while trying to load values from localStorage');
         localStorage.removeItem('values');

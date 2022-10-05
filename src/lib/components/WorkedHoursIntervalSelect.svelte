@@ -4,14 +4,13 @@
   export let disabled: boolean;
 </script>
 
-<select {id} class="root" bind:value {disabled}>
+<select {id} bind:value {disabled}>
   <option value="week">săptămână</option>
   <option value="month">lună</option>
 </select>
 
 <style lang="scss">
-  .root {
-    text-align: center;
+  select {
     flex: 0 0 110px;
   }
 </style>

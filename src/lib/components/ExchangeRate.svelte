@@ -7,13 +7,13 @@
 </script>
 
 {#if exchangeRates && currency !== BASE_CURRENCY}
-  <div class="root" transition:slide>
+  <div transition:slide>
     Curs de schimb orientativ: {EXCHANGE_RATE_FORMATTER.format(1 / exchangeRates[currency])} RON/{currency}
   </div>
 {/if}
 
 <style lang="scss">
-  .root {
+  div {
     margin: 2em auto;
     font-size: 0.9em;
     color: rgba($text-color, 0.5);

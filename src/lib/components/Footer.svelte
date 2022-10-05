@@ -1,17 +1,17 @@
-<div class="root">
-  <hr class="divider" />
+<div>
+  <hr />
   Realizat de
   <a href="https://github.com/icflorescu" target="_blank">Ionuț-Cristian Florescu</a>.
 </div>
 
 <style lang="scss">
-  .root {
+  div {
     color: darken($text-color, 20);
     text-align: center;
     font-size: 0.85em;
   }
 
-  .divider {
+  hr {
     border: 0;
     height: 1px;
     background: darken($text-color, 50);

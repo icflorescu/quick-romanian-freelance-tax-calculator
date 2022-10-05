@@ -6,7 +6,7 @@
 </script>
 
 {#if annualIncome >= VAT_THRESHOLD}
-  <div class="root" transition:slide>
+  <div transition:slide>
     Atenție!
     <br />
     Estimezi un venit anual de {STANDARD_FORMATTER.format(annualIncome)} RON.
@@ -18,7 +18,7 @@
 {/if}
 
 <style lang="scss">
-  .root {
+  div {
     margin: 2em auto;
     font-size: 0.9em;
     color: $warning-color;

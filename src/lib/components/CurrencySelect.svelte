@@ -6,15 +6,14 @@
   export let disabled: boolean;
 </script>
 
-<select {id} class="root" bind:value {disabled}>
+<select {id} bind:value {disabled}>
   {#each CURRENCIES as c (c)}
     <option value={c}>{c}</option>
   {/each}
 </select>
 
 <style lang="scss">
-  .root {
-    text-align: center;
+  select {
     flex: 0 0 60px;
   }
 </style>

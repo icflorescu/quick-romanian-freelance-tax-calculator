@@ -27,6 +27,7 @@
     line-height: 1.5;
     border-radius: 0.25em;
     border: 1px solid $border-color;
+    text-align: center;
   }
 
   input {

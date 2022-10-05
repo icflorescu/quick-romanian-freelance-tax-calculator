@@ -4,13 +4,13 @@
 </script>
 
 {#if visible}
-  <div class="root" in:slide out:fade>
+  <div in:slide out:fade>
     <slot />
   </div>
 {/if}
 
 <style lang="scss">
-  .root {
+  div {
     border-radius: 0.5em;
     margin: 2em auto;
     padding: 1em;
