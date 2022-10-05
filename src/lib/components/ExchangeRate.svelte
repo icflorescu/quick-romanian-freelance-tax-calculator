@@ -14,7 +14,7 @@
 
 <style lang="scss">
   .root {
-    margin: 0 auto;
+    margin: 2em auto;
     font-size: 0.9em;
     color: rgba($text-color, 0.5);
     background: rgba(white, 0.025);
