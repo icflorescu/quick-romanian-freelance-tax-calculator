@@ -1,11 +1,12 @@
 <script lang="ts">
   import { CURRENCIES } from '$lib/config';
 
+  export let id: string;
   export let value: string;
   export let disabled: boolean;
 </script>
 
-<select class="root" bind:value {disabled}>
+<select {id} class="root" bind:value {disabled}>
   {#each CURRENCIES as c (c)}
     <option value={c}>{c}</option>
   {/each}

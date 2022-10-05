@@ -16,6 +16,6 @@
     height: 1px;
     background: darken($text-color, 50);
     width: 80px;
-    margin-bottom: 1.5em;
+    margin-bottom: 0.75em;
   }
 </style>

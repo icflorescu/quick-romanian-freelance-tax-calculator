@@ -13,7 +13,7 @@
   .root {
     border-radius: 0.5em;
     margin: 2em auto;
-    padding: 1em 0.5em 0.5em;
+    padding: 1em;
     background: rgba(white, 0.05);
     display: flex;
     flex-direction: column;

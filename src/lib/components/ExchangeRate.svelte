@@ -8,7 +8,7 @@
 
 {#if exchangeRates && currency !== BASE_CURRENCY}
   <div class="root" transition:slide>
-    Curs de schimb: {EXCHANGE_RATE_FORMATTER.format(1 / exchangeRates[currency])} RON/{currency}
+    Curs de schimb orientativ: {EXCHANGE_RATE_FORMATTER.format(1 / exchangeRates[currency])} RON/{currency}
   </div>
 {/if}
 

@@ -1,27 +1,36 @@
+<!-- @hmr:keep-all -->
 <script lang="ts">
   import Card from '$lib/components/Card.svelte';
   import CurrencySelect from '$lib/components/CurrencySelect.svelte';
   import ExchangeRate from '$lib/components/ExchangeRate.svelte';
   import Footer from '$lib/components/Footer.svelte';
   import Header from '$lib/components/Header.svelte';
+  import IncomeInput from '$lib/components/IncomeInput.svelte';
   import IntervalSelect from '$lib/components/IntervalSelect.svelte';
   import TaxDetails from '$lib/components/TaxDetails.svelte';
   import VatNotice from '$lib/components/VatNotice.svelte';
+  import WorkedHoursInput from '$lib/components/WorkedHoursInput.svelte';
+  import WorkedHoursIntervalSelect from '$lib/components/WorkedHoursIntervalSelect.svelte';
   import {
     BASE_CURRENCY,
     BASE_MONTHLY_INCOME,
     CURRENCIES,
+    EXCHANGE_RATES_RELOAD_INTERVAL,
     HEALTH_PERCENTAGE,
     INCOME_TAX_PERCENTAGE,
     PENSION_PERCENTAGE,
     STANDARD_FORMATTER,
+    WEEKS_PER_CALENDAR_YEAR,
   } from '$lib/config';
   import { onDestroy, onMount } from 'svelte';
 
   let exchangeRates: Record<string, number>;
-  let income: number;
-  let currency = 'RON';
-  let interval: 'month' | 'year' = 'month';
+  $: disabled = !exchangeRates;
+  let income = 1_000;
+  let currency = 'EUR';
+  let interval: 'hour' | 'month' | 'year' = 'month';
+  let workedHours: number = 40;
+  let workedHoursInterval: 'week' | 'month' = 'week';
   let annualIncome: number;
   let annualPension: number;
   let annualHealth: number;
@@ -44,8 +53,17 @@
   let exchangeRatesLoadingInterval: ReturnType<typeof setInterval>;
 
   onMount(() => {
+    const values = localStorage.getItem('values');
+    if (values) {
+      try {
+        ({ income, currency, interval, workedHours, workedHoursInterval } = JSON.parse(values));
+      } catch {
+        console.error('Error while trying to load values from localStorage');
+        localStorage.removeItem('values');
+      }
+    }
     loadExchangeRates();
-    exchangeRatesLoadingInterval = setInterval(loadExchangeRates, 3_600_000);
+    exchangeRatesLoadingInterval = setInterval(loadExchangeRates, EXCHANGE_RATES_RELOAD_INTERVAL);
   });
 
   onDestroy(() => {
@@ -53,30 +71,51 @@
   });
 
   $: {
-    annualIncome =
-      (interval === 'month' ? 12 * income : income) /
-      (currency === BASE_CURRENCY ? 1 : exchangeRates[currency]);
-    annualPension =
-      (annualIncome > 24 * BASE_MONTHLY_INCOME
-        ? 24
-        : annualIncome > 12 * BASE_MONTHLY_INCOME
-        ? 12
-        : 0) *
-      BASE_MONTHLY_INCOME *
-      PENSION_PERCENTAGE;
-    annualHealth =
-      (annualIncome > 24 * BASE_MONTHLY_INCOME
-        ? 24
-        : annualIncome > 12 * BASE_MONTHLY_INCOME
-        ? 12
-        : annualIncome > 6 * BASE_MONTHLY_INCOME
-        ? 6
-        : 0) *
-      BASE_MONTHLY_INCOME *
-      HEALTH_PERCENTAGE;
-    annualIncomeTaxAmount = (annualIncome - annualPension) * INCOME_TAX_PERCENTAGE;
-    annualTaxAmount = annualPension + annualHealth + annualIncomeTaxAmount;
-    annualTaxPercentage = (annualTaxAmount * 100) / annualIncome;
+    if (typeof window !== 'undefined') {
+      localStorage.setItem(
+        'values',
+        JSON.stringify({ income, currency, interval, workedHours, workedHoursInterval }),
+      );
+    }
+    if (exchangeRates) {
+      let computedAnnualIncome: number;
+      if (interval === 'hour') {
+        computedAnnualIncome =
+          income * workedHours * (workedHoursInterval === 'month' ? 12 : WEEKS_PER_CALENDAR_YEAR);
+      } else if (interval === 'month') {
+        computedAnnualIncome = income * 12;
+      } else {
+        computedAnnualIncome = income;
+      }
+      if (currency !== BASE_CURRENCY) {
+        computedAnnualIncome = computedAnnualIncome / exchangeRates[currency];
+      }
+      annualIncome = computedAnnualIncome;
+
+      annualPension =
+        (annualIncome > 24 * BASE_MONTHLY_INCOME
+          ? 24
+          : annualIncome > 12 * BASE_MONTHLY_INCOME
+          ? 12
+          : 0) *
+        BASE_MONTHLY_INCOME *
+        PENSION_PERCENTAGE;
+
+      annualHealth =
+        (annualIncome > 24 * BASE_MONTHLY_INCOME
+          ? 24
+          : annualIncome > 12 * BASE_MONTHLY_INCOME
+          ? 12
+          : annualIncome > 6 * BASE_MONTHLY_INCOME
+          ? 6
+          : 0) *
+        BASE_MONTHLY_INCOME *
+        HEALTH_PERCENTAGE;
+
+      annualIncomeTaxAmount = (annualIncome - annualPension) * INCOME_TAX_PERCENTAGE;
+      annualTaxAmount = annualPension + annualHealth + annualIncomeTaxAmount;
+      annualTaxPercentage = (annualTaxAmount * 100) / annualIncome;
+    }
   }
 </script>
 
@@ -84,32 +123,47 @@
 <Card>
   <label class="label" for="income">{income ? 'Dintr-un venit de' : 'Venit'}</label>
   <div class="inputs">
-    <input
-      id="income"
-      class="income-input"
-      type="number"
-      placeholder="venit estimat…"
-      disabled={!exchangeRates}
-      bind:value={income}
-    />
-    <CurrencySelect bind:value={currency} disabled={!exchangeRates} />
-    <IntervalSelect bind:value={interval} disabled={!exchangeRates} />
+    <IncomeInput id="income" {disabled} bind:value={income} />
+    <label for="currency">de</label>
+    <CurrencySelect id="currency" bind:value={currency} {disabled} />
+    <label for="interval">pe</label>
+    <IntervalSelect id="interval" bind:value={interval} {disabled} />
   </div>
+  {#if interval === 'hour'}
+    <div class="inputs">
+      <label for="workedHours">La</label>
+      <WorkedHoursInput id="workedHours" {disabled} bind:value={workedHours} />
+      <label for="workedHoursInterval">de ore pe</label>
+      <WorkedHoursIntervalSelect
+        id="workedHoursInterval"
+        bind:value={workedHoursInterval}
+        {disabled}
+      />
+    </div>
+  {/if}
 </Card>
 <Card visible={!!annualTaxPercentage}>
   <div class="label">Statul îți va lua în 2023</div>
   <div class="tax tax-percentage">{STANDARD_FORMATTER.format(annualTaxPercentage)}%</div>
   <div>Adică</div>
   <div class="tax tax-amount">{STANDARD_FORMATTER.format(annualTaxAmount)} RON</div>
-  {#if currency !== BASE_CURRENCY}
+  {#if interval !== 'year'}
     <div>Echivalentul a</div>
     <div class="tax tax-amount smaller">
       {STANDARD_FORMATTER.format(
-        (annualTaxAmount * exchangeRates[currency]) / (interval === 'month' ? 12 : 1),
+        (annualTaxAmount * (currency === BASE_CURRENCY ? 1 : exchangeRates[currency])) /
+          (interval === 'hour'
+            ? (workedHoursInterval === 'week' ? WEEKS_PER_CALENDAR_YEAR : 12) * workedHours
+            : interval === 'month'
+            ? 12
+            : 1),
       )}
       {currency}
+      {#if interval === 'hour'}
+        <span>/oră</span>
+      {/if}
       {#if interval === 'month'}
-        <span> / lună</span>
+        <span>/lună</span>
       {/if}
     </div>
   {/if}
@@ -131,12 +185,8 @@
     display: flex;
     gap: 0.5em;
     justify-content: center;
+    align-items: baseline;
     width: fit-content;
-  }
-
-  .income-input {
-    flex: 1 1 110px;
-    max-width: 110px;
   }
 
   .tax {

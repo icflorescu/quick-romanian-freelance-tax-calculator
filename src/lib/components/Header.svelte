@@ -1,17 +1,15 @@
-<h1 class="title">
-  Estimează-ți rapid taxele pentru
+<h1>
+  Estimează-ți rapid taxele
   <br />
-  freelancing în România
+  pentru freelancing în România
+  <br />
+  (PFA în sistem real, anul 2023)
 </h1>
-<p class="subtitle">PFA în sistem real, anul 2023.</p>
 
 <style lang="scss">
-  .title,
-  .subtitle {
+  h1 {
     text-align: center;
-  }
-
-  .title {
     font-size: 1.25em;
+    line-height: 1.5;
   }
 </style>

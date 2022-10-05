@@ -30,6 +30,10 @@
     line-height: 1.25;
   }
 
+  label {
+    white-space: nowrap;
+  }
+
   input,
   select {
     margin: 0;
