@@ -9,10 +9,7 @@ const config = {
   kit: {
     adapter: adapter(),
     paths: {
-      base:
-        process.env.NODE_ENV === 'production'
-          ? 'https://icflorescu.github.io/quick-romanian-freelance-tax-calculator/'
-          : '',
+      base: process.env.NODE_ENV === 'production' ? '/quick-romanian-freelance-tax-calculator' : '',
     },
   },
 };
