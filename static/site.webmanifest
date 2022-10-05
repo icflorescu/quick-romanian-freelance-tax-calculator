@@ -1,7 +1,7 @@
 {
   "name": "Taxe freelancing România",
   "short_name": "Taxe freelancing România",
-  "start_url": "./",
+  "start_url": "https://icflorescu.github.io/quick-romanian-freelance-tax-calculator/",
   "scope": ".",
   "icons": [
     {
