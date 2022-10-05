@@ -5,8 +5,6 @@
 </div>
 
 <style lang="scss">
-  @import 'variables';
-
   .root {
     color: darken($text-color, 20);
     text-align: center;

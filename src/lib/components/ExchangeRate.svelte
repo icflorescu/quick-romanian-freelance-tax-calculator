@@ -13,8 +13,6 @@
 {/if}
 
 <style lang="scss">
-  @import 'variables';
-
   .root {
     margin: 0 auto;
     font-size: 0.9em;
