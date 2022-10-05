@@ -26,11 +26,34 @@
 
   let exchangeRates: Record<string, number>;
   $: disabled = !exchangeRates;
-  let income: number = 2000;
-  let currency: string = 'EUR';
-  let interval: 'hour' | 'month' | 'year' = 'month';
-  let workedHours: number = 40;
-  let workedHoursInterval: 'week' | 'month' = 'week';
+
+  let income: number;
+  let currency: string;
+  let interval: 'hour' | 'month' | 'year';
+  let workedHours: number;
+  let workedHoursInterval: 'week' | 'month';
+
+  const loadInputFromLocalStorage = () => {
+    if (typeof window === 'undefined') return;
+    const values = localStorage.getItem('values');
+    if (values) {
+      try {
+        ({
+          income,
+          currency = 'EUR',
+          interval = 'month',
+          workedHours = 20,
+          workedHoursInterval = 'week',
+        } = JSON.parse(values));
+      } catch {
+        console.error('Error while trying to load values from localStorage');
+        localStorage.removeItem('values');
+      }
+    }
+  };
+
+  loadInputFromLocalStorage();
+
   let annualIncome: number;
   let annualPension: number;
   let annualHealth: number;
@@ -53,21 +76,7 @@
   let exchangeRatesLoadingInterval: ReturnType<typeof setInterval>;
 
   onMount(() => {
-    const values = localStorage.getItem('values');
-    if (values) {
-      try {
-        ({
-          income = 2000,
-          currency = 'EUR',
-          interval = 'month',
-          workedHours = 40,
-          workedHoursInterval = 'week',
-        } = JSON.parse(values));
-      } catch {
-        console.error('Error while trying to load values from localStorage');
-        localStorage.removeItem('values');
-      }
-    }
+    loadInputFromLocalStorage();
     loadExchangeRates();
     exchangeRatesLoadingInterval = setInterval(loadExchangeRates, EXCHANGE_RATES_RELOAD_INTERVAL);
   });
