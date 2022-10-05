@@ -111,20 +111,20 @@
     estree-walker "^2.0.1"
     picomatch "^2.2.2"
 
-"@sveltejs/adapter-static@next":
+"@sveltejs/adapter-static@^1.0.0-next.44":
   version "1.0.0-next.44"
   resolved "https://registry.yarnpkg.com/@sveltejs/adapter-static/-/adapter-static-1.0.0-next.44.tgz#44be6fa94c090a8c70079d60482ec03ab25c5368"
   integrity sha512-qBtkmIMYGiDv5r2F3AfSG0ABHZim2NC+1PL2YVCa+QYz8IVCm1E/wGQ0RW4KVrANZ3MZk8y52PPajx+8/fwmNw==
 
-"@sveltejs/kit@next":
-  version "1.0.0-next.508"
-  resolved "https://registry.yarnpkg.com/@sveltejs/kit/-/kit-1.0.0-next.508.tgz#6a0681914f9ac1f37672036a1a27a85b9d11aaa2"
-  integrity sha512-qUnuhuL82meE0lSwrsS/FIvtDoE83Au4SxVLCim3FzoCnJc7bFZ9vYRbRUYxAjfYKRMjKVUrp9iHFObn9LmnUg==
+"@sveltejs/kit@^1.0.0-next.509":
+  version "1.0.0-next.509"
+  resolved "https://registry.yarnpkg.com/@sveltejs/kit/-/kit-1.0.0-next.509.tgz#eaf822da8cb1f9a371ac208fcc5412127a4f89a5"
+  integrity sha512-PKynROFwayitCsMw1ZRtf7ezoI9YzWbQxAQy0NskNUSWf7iUo1ng7Qd/bB5VpFqKIrjgi/nWl8hriaemkit2Vg==
   dependencies:
     "@sveltejs/vite-plugin-svelte" "^1.0.5"
     "@types/cookie" "^0.5.1"
     cookie "^0.5.0"
-    devalue "^3.1.2"
+    devalue "^4.0.0"
     kleur "^4.1.4"
     magic-string "^0.26.2"
     mime "^3.0.0"
@@ -421,10 +421,10 @@ detect-indent@^6.0.0:
   resolved "https://registry.yarnpkg.com/detect-indent/-/detect-indent-6.1.0.tgz#592485ebbbf6b3b1ab2be175c8393d04ca0d57e6"
   integrity sha512-reYkTUJAZb9gUuZ2RvVCNhVHdg62RHnJ7WJl8ftMi4diZ6NWlciOzQN88pUhSELEwflJht4oQDv0F0BMlwaYtA==
 
-devalue@^3.1.2:
-  version "3.1.3"
-  resolved "https://registry.yarnpkg.com/devalue/-/devalue-3.1.3.tgz#99f0073c109b78f92c82a704cc7da139ef1337f5"
-  integrity sha512-9KO89Cb+qjzf2CqdrH+NuLaqdk9GhDP5EhR4zlkR51dvuIaiqtlkDkGzLMShDemwUy21raSMdu+kpX8Enw3yGQ==
+devalue@^4.0.0:
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/devalue/-/devalue-4.0.0.tgz#efeadbc922894d468ad903029d4a7e65e37f4952"
+  integrity sha512-w25siwXyuMUqMr7jPlEjyNCp1vn0Jzj/fNg3qVt/r/Dpe8HjESh2V92L0jmh3uq4iJt0BvjH+Azk1pQzkcnDWA==
 
 dir-glob@^3.0.1:
   version "3.0.1"
