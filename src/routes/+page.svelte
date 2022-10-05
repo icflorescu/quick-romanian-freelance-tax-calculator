@@ -6,6 +6,7 @@
   import Header from '$lib/components/Header.svelte';
   import IntervalSelect from '$lib/components/IntervalSelect.svelte';
   import TaxDetails from '$lib/components/TaxDetails.svelte';
+  import VatNotice from '$lib/components/VatNotice.svelte';
   import {
     BASE_CURRENCY,
     BASE_MONTHLY_INCOME,
@@ -21,6 +22,7 @@
   let income: number;
   let currency = 'RON';
   let interval: 'month' | 'year' = 'month';
+  let annualIncome: number;
   let annualPension: number;
   let annualHealth: number;
   let annualIncomeTaxAmount: number;
@@ -51,7 +53,7 @@
   });
 
   $: {
-    const annualIncome =
+    annualIncome =
       (interval === 'month' ? 12 * income : income) /
       (currency === BASE_CURRENCY ? 1 : exchangeRates[currency]);
     annualPension =
@@ -80,7 +82,7 @@
 
 <Header />
 <Card>
-  <label class="label" for="income">{income ? 'La un câștig de' : 'Câștigi'}</label>
+  <label class="label" for="income">{income ? 'Dintr-un venit de' : 'Venit'}</label>
   <div class="inputs">
     <input
       id="income"
@@ -95,20 +97,33 @@
   </div>
 </Card>
 <Card visible={!!annualTaxPercentage}>
-  <div class="label">Statul îți ia</div>
+  <div class="label">Statul îți va lua în 2023</div>
   <div class="tax tax-percentage">{STANDARD_FORMATTER.format(annualTaxPercentage)}%</div>
   <div>Adică</div>
   <div class="tax tax-amount">{STANDARD_FORMATTER.format(annualTaxAmount)} RON</div>
+  {#if currency !== BASE_CURRENCY}
+    <div>Echivalentul a</div>
+    <div class="tax tax-amount smaller">
+      {STANDARD_FORMATTER.format(
+        (annualTaxAmount * exchangeRates[currency]) / (interval === 'month' ? 12 : 1),
+      )}
+      {currency}
+      {#if interval === 'month'}
+        <span> / lună</span>
+      {/if}
+    </div>
+  {/if}
   <div>Reprezentând</div>
   <TaxDetails {annualPension} {annualHealth} {annualIncomeTaxAmount} />
 </Card>
+<VatNotice {annualIncome} />
 <ExchangeRate {exchangeRates} {currency} />
 <Footer />
 
 <style lang="scss">
   .label {
     display: block;
-    font-size: 2em;
+    font-size: 1.66em;
     text-align: center;
   }
 
@@ -141,5 +156,8 @@
     font-size: 2em;
     padding: 0.1em 0.66em;
     margin-bottom: 0.75em;
+    &.smaller {
+      font-size: 1.5em;
+    }
   }
 </style>

@@ -1,5 +1,5 @@
 <h1 class="title">
-  Estimează rapid taxele pentru
+  Estimează-ți rapid taxele pentru
   <br />
   freelancing în România
 </h1>

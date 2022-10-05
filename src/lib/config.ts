@@ -4,6 +4,7 @@ export const HEALTH_PERCENTAGE = 0.1;
 export const INCOME_TAX_PERCENTAGE = 0.1;
 export const CURRENCIES = ['EUR', 'USD', 'GBP', 'CHF', 'RON'];
 export const BASE_CURRENCY = 'RON';
+export const VAT_THRESHOLD = 300_000;
 export const STANDARD_FORMATTER = new Intl.NumberFormat('ro-RO', {
   maximumFractionDigits: 2,
 });

@@ -1,7 +1,3 @@
-<script lang="ts">
-  // import './global.scss';
-</script>
-
 <svelte:head>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
@@ -12,7 +8,7 @@
   <title>Taxe freelancing România</title>
   <meta
     name="description"
-    value="Estimează-ți rapid taxele pentru anul 2023, dacă lucrezi ca freelancer în România, în regim de PFA în sistem real"
+    value="Estimează-ți rapid taxele pentru anul 2023, dacă vei lucra ca freelancer în România, în regim de PFA în sistem real"
   />
 </svelte:head>
 
