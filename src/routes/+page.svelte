@@ -19,7 +19,7 @@
 
   let exchangeRates: Record<string, number>;
   let income: number;
-  let currency: string = 'RON';
+  let currency = 'RON';
   let interval: 'month' | 'year' = 'month';
   let annualPension: number;
   let annualHealth: number;
