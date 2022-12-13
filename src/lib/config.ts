@@ -1,4 +1,4 @@
-export const BASE_MONTHLY_INCOME = 2_550;
+export const BASE_MONTHLY_INCOME = 3_000;
 export const PENSION_PERCENTAGE = 0.25;
 export const HEALTH_PERCENTAGE = 0.1;
 export const INCOME_TAX_PERCENTAGE = 0.1;
