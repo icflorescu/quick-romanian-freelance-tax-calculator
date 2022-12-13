@@ -1,9 +1,12 @@
 <div>
   <hr />
   Realizat de
-  <a href="https://github.com/icflorescu" target="_blank">Ionuț-Cristian Florescu</a>.
+  <a href="https://github.com/icflorescu" target="_blank" rel="noreferrer"
+    >Ionuț-Cristian Florescu</a
+  >.
   <br />
   Dacă ești freelancer, te-ar putea interesa
+  <!-- svelte-ignore security-anchor-rel-noreferrer -->
   <a href="https://swapp.ro" target="_blank">swapp.ro</a>.
 </div>
 
