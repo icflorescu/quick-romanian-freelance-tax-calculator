@@ -156,9 +156,10 @@
       />
     </div>
   {/if}
+  <div class="label">realizat în 2023</div>
 </Card>
 <Card visible={!!annualTaxPercentage}>
-  <div class="label">Statul îți va lua în 2023</div>
+  <div class="label">Statul îți va lua în 2024</div>
   <div class="tax tax-percentage">{STANDARD_FORMATTER.format(annualTaxPercentage)}%</div>
   <div>Adică</div>
   <div class="tax tax-amount">{STANDARD_FORMATTER.format(annualTaxAmount)} RON</div>
