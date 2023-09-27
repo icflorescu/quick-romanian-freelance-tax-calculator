@@ -15,11 +15,12 @@
     BASE_CURRENCY,
     BASE_MONTHLY_INCOME,
     CURRENCIES,
+    DECIMAL_FORMATTER,
     EXCHANGE_RATES_RELOAD_INTERVAL,
     HEALTH_PERCENTAGE,
     INCOME_TAX_PERCENTAGE,
+    INTEGER_FORMATTER,
     PENSION_PERCENTAGE,
-    STANDARD_FORMATTER,
     WEEKS_PER_CALENDAR_YEAR,
   } from '$lib/config';
   import { onDestroy, onMount } from 'svelte';
@@ -160,13 +161,13 @@
 </Card>
 <Card visible={!!annualTaxPercentage}>
   <div class="label">Statul îți va lua în 2024</div>
-  <div class="tax tax-percentage">{STANDARD_FORMATTER.format(annualTaxPercentage)}%</div>
+  <div class="tax tax-percentage">{DECIMAL_FORMATTER.format(annualTaxPercentage)}%</div>
   <div>Adică</div>
-  <div class="tax tax-amount">{STANDARD_FORMATTER.format(annualTaxAmount)} RON</div>
+  <div class="tax tax-amount">{INTEGER_FORMATTER.format(annualTaxAmount)} RON</div>
   {#if interval !== 'year'}
     <div>Echivalentul a</div>
     <div class="tax tax-amount smaller">
-      {STANDARD_FORMATTER.format(
+      {DECIMAL_FORMATTER.format(
         (annualTaxAmount * (currency === BASE_CURRENCY ? 1 : exchangeRates[currency])) /
           (interval === 'hour'
             ? (workedHoursInterval === 'week' ? WEEKS_PER_CALENDAR_YEAR : 12) * workedHours

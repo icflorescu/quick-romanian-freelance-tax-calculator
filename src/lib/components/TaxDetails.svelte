@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { STANDARD_FORMATTER } from '$lib/config';
+  import { INTEGER_FORMATTER } from '$lib/config';
   export let annualPension: number;
   export let annualHealth: number;
   export let annualIncomeTaxAmount: number;
@@ -7,11 +7,11 @@
 
 <div class="root">
   <div class="detail">CAS (pensie)</div>
-  <div class="detail amount">{STANDARD_FORMATTER.format(annualPension)} RON</div>
+  <div class="detail amount">{INTEGER_FORMATTER.format(annualPension)} RON</div>
   <div class="detail">CASS (sănătate)</div>
-  <div class="detail amount">{STANDARD_FORMATTER.format(annualHealth)} RON</div>
-  <div class="detail ">Impozit pe venit</div>
-  <div class="detail amount">{STANDARD_FORMATTER.format(annualIncomeTaxAmount)} RON</div>
+  <div class="detail amount">{INTEGER_FORMATTER.format(annualHealth)} RON</div>
+  <div class="detail">Impozit pe venit</div>
+  <div class="detail amount">{INTEGER_FORMATTER.format(annualIncomeTaxAmount)} RON</div>
 </div>
 
 <style lang="scss">

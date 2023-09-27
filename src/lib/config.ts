@@ -9,7 +9,11 @@ export const VAT_THRESHOLD = 300_000;
 export const EXCHANGE_RATES_RELOAD_INTERVAL = 3_600_000;
 export const WEEKS_PER_CALENDAR_YEAR = 52.1429;
 
-export const STANDARD_FORMATTER = new Intl.NumberFormat('ro-RO', {
+export const INTEGER_FORMATTER = new Intl.NumberFormat('ro-RO', {
+  maximumFractionDigits: 0,
+});
+
+export const DECIMAL_FORMATTER = new Intl.NumberFormat('ro-RO', {
   maximumFractionDigits: 2,
 });
 

@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { STANDARD_FORMATTER, VAT_THRESHOLD } from '$lib/config';
+  import { DECIMAL_FORMATTER, VAT_THRESHOLD } from '$lib/config';
   import { slide } from 'svelte/transition';
 
   export let annualIncome: number;
@@ -9,9 +9,9 @@
   <div transition:slide>
     Atenție!
     <br />
-    Estimezi un venit anual de {STANDARD_FORMATTER.format(annualIncome)} RON.
+    Estimezi un venit anual de {DECIMAL_FORMATTER.format(annualIncome)} RON.
     <br />
-    Dacă depășești {STANDARD_FORMATTER.format(VAT_THRESHOLD)} RON trebuie
+    Dacă depășești {DECIMAL_FORMATTER.format(VAT_THRESHOLD)} RON trebuie
     <br />
     să te înregistrezi ca plătitor de TVA!
   </div>
