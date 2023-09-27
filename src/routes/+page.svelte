@@ -108,20 +108,20 @@
       annualIncome = computedAnnualIncome;
 
       annualPension =
-        (annualIncome > 24 * BASE_MONTHLY_INCOME
+        (annualIncome >= 24 * BASE_MONTHLY_INCOME
           ? 24
-          : annualIncome > 12 * BASE_MONTHLY_INCOME
+          : annualIncome >= 12 * BASE_MONTHLY_INCOME
           ? 12
           : 0) *
         BASE_MONTHLY_INCOME *
         PENSION_PERCENTAGE;
 
       annualHealth =
-        (annualIncome > 24 * BASE_MONTHLY_INCOME
+        (annualIncome >= 24 * BASE_MONTHLY_INCOME
           ? 24
-          : annualIncome > 12 * BASE_MONTHLY_INCOME
+          : annualIncome >= 12 * BASE_MONTHLY_INCOME
           ? 12
-          : annualIncome > 6 * BASE_MONTHLY_INCOME
+          : annualIncome >= 6 * BASE_MONTHLY_INCOME
           ? 6
           : 0) *
         BASE_MONTHLY_INCOME *
