@@ -25,6 +25,7 @@
   } from '$lib/config';
   import { onDestroy, onMount } from 'svelte';
 
+  const BASE_CURRENCY_LOWER_CASE = BASE_CURRENCY.toLowerCase();
   let exchangeRates: Record<string, number>;
   $: disabled = !exchangeRates;
 
@@ -63,14 +64,17 @@
   let annualTaxAmount: number;
 
   const loadExchangeRates = async () => {
-    const res = await fetch(`https://api.exchangerate.host/latest?base=${BASE_CURRENCY}`);
+    const res = await fetch(
+      `https://cdn.jsdelivr.net/gh/fawazahmed0/currency-api@1/latest/currencies/${BASE_CURRENCY_LOWER_CASE.toLowerCase()}.min.json`,
+    );
     if (res.ok) {
-      const data: { rates: Record<string, number> } = await res.json();
+      const data = await res.json();
       if (!exchangeRates) exchangeRates = {};
-      for (const c in data.rates) {
-        if (CURRENCIES.includes(c)) exchangeRates[c] = data.rates[c];
+      for (const lowerCaseCurrency in data[BASE_CURRENCY_LOWER_CASE]) {
+        const currency = lowerCaseCurrency.toUpperCase();
+        if (CURRENCIES.includes(currency))
+          exchangeRates[currency] = data[BASE_CURRENCY_LOWER_CASE][lowerCaseCurrency];
       }
-      exchangeRates = data.rates;
     }
   };
 
