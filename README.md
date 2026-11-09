@@ -1,12 +1,13 @@
-# Quick Romanian Freelance Tax Calculator
+# Calculatorul s-a mutat pe [swapp.ro/taxe-pfa](https://swapp.ro/taxe-pfa)
 
-Application available at [icflorescu.github.io/quick-romanian-freelance-tax-calculator](https://icflorescu.github.io/quick-romanian-freelance-tax-calculator/).
+[![Calculatorul de taxe PFA pe swapp.ro](assets/taxe-pfa-swapp.png)](https://swapp.ro/taxe-pfa)
 
-[![Taxe freelancing România](https://user-images.githubusercontent.com/581999/194133281-2c5ac74e-ca62-46c0-be9d-e35cf34a3d58.png)](https://icflorescu.github.io/quick-romanian-freelance-tax-calculator/)
+Calculatorul rapid de taxe pe care l-am publicat aici în 2022 a crescut și face acum parte din [swapp.ro](https://swapp.ro), pentru PFA, ÎI și PFI.
 
-A quick & dirty tax calculator for Romanian freelancers.
-Built with Svelte & SvelteKit and deployed to GitHub Pages.
+Scrii cât încasezi, eu îți spun cât pleacă la CAS, CASS și impozit.
 
-## License
+**[Calculează-ți taxele pe swapp.ro/taxe-pfa](https://swapp.ro/taxe-pfa)**
 
-The [ISC License](https://github.com/icflorescu/quick-romanian-freelance-tax-calculator/blob/master/LICENSE).
+---
+
+**English:** this quick tax calculator for Romanian freelancers now lives at [swapp.ro/taxe-pfa](https://swapp.ro/taxe-pfa), part of [swapp.ro](https://swapp.ro), invoicing and single-entry accounting for Romanian sole traders. The old address redirects there. The original SvelteKit source remains in this repository's history, tagged [`sveltekit-calculator`](https://github.com/icflorescu/quick-romanian-freelance-tax-calculator/tree/sveltekit-calculator), under the [ISC License](LICENSE).

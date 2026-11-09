@@ -1,2 +1,0 @@
-User-agent: *
-Host: https://icflorescu.github.io/quick-romanian-freelance-tax-calculator/
